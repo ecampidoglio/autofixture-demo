@@ -3,7 +3,7 @@ using FluentAssertions;
 using Ploeh.AutoFixture.Xunit;
 using Xunit.Extensions;
 
-public class When_calculating_a_generation
+public class When_calculating_a_generation_with_declarative_af
 {
     [Theory, AutoData]
     public void It_should_return_a_generation_containing_cells(Grid subject, Generation seed)
