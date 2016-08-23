@@ -10,6 +10,7 @@ _[Rr]e[Ss]harper.*/
 _[Nn][Cc]runch_*/
 *.[Cc]ache
 .svn/
+.vscode/
 TestResults/
 Packages.dgml
 *.suo
