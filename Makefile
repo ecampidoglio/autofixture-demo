@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 prefix = /usr/local
-CC = $(prefix)/bin/gmcs
+CC = $(prefix)/bin/mcs
 MONO = $(prefix)/bin/mono
 XUNIT = $(prefix)/mono/xunit
 LDFLAGS = -lib:packages
