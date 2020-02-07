@@ -11,6 +11,7 @@ _[Nn][Cc]runch_*/
 *.[Cc]ache
 .svn/
 .vscode/
+.idea/
 TestResults/
 Packages.dgml
 *.suo
