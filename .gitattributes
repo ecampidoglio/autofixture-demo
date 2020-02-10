@@ -1,0 +1,7 @@
+*             text=auto
+
+*.cs          diff=csharp
+
+*.ps1         eol=crlf
+*.sh          eol=lf
+*.DotSettings eol=lf
