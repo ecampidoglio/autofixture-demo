@@ -4,6 +4,10 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Authors>Enrico Campidoglio</Authors>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <NoWarn>NU1701</NoWarn>
+    </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="AutoFixture" Version="4.11.0" />
