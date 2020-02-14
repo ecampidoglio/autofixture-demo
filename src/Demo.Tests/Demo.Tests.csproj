@@ -6,6 +6,7 @@
     </PropertyGroup>
     
     <PropertyGroup>
+        <IsTestProject>true</IsTestProject>
         <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
 
