@@ -1,0 +1,213 @@
+{
+	/*
+	* Demo snippets for "Minimalistic Tests with AutoFixture"
+	* Implementing the first rule of Game of Life with TDD and AutoFixture
+	*/
+	// Part 1 - Naive tests
+	"First test": {
+		"scope": "csharp",
+		"prefix": "t1",
+		"body": [
+			"[Fact]",
+			"public void It_should_return_a_generation_containing_cells()",
+			"{",
+			"    $0",
+			"}"
+		]
+	},
+	"First test: Given": {
+		"scope": "csharp",
+		"prefix": "t1g",
+		"body": [
+			"// Arrange",
+			"var seed = new Generation(",
+			"                new List<Cell>()",
+			"                {",
+			"                    new Cell(x: 9, y: 12),",
+			"                    new Cell(x: 15, y: 20)",
+			"                });",
+			"var sut = new Grid();$0"
+		]
+	},
+	"First test: When": {
+		"scope": "csharp",
+		"prefix": "t1w",
+		"body": [
+			"// Act",
+			"var nextGeneration = sut.Refresh(seed);$0"
+		]
+	},
+	"First test: Then": {
+		"scope": "csharp",
+		"prefix": "t1t",
+		"body": [
+			"// Assert",
+			"nextGeneration.Should().NotBeEmpty();$0"
+		]
+	},
+	"Implementation: Generation Constructor": {
+		"scope": "csharp",
+		"prefix": "i1",
+		"body": [
+			"private readonly IEnumerable<Cell> _cells;",
+			"",
+			"public Generation(IEnumerable<Cell> cells)",
+			"{",
+			"    _cells = cells;",
+			"}$0"
+		]
+	},
+	"Implementation: Cell Constructor": {
+		"scope": "csharp",
+		"prefix": "i2",
+		"body": [
+			"public Cell(int x, int y)",
+			"{",
+			"    X = x;",
+			"    Y = y;",
+			"}",
+			"",
+			"public int X { get; }",
+			"",
+			"public int Y { get; }$0"
+		]
+	},
+	"Implementation: Refresh Method": {
+		"scope": "csharp",
+		"prefix": "i3",
+		"body": [
+			"public Generation Refresh(Generation seed)",
+			"{",
+			"    return default;",
+			"}$0"
+		]
+	},
+	"Implementation: Generation Enumerator": {
+		"scope": "csharp",
+		"prefix": "i4",
+		"body": [
+			"public IEnumerator<Cell> GetEnumerator()",
+			"{",
+			"    foreach (var cell in _cells)",
+			"    {",
+			"        yield return cell;",
+            "    }",
+			"}",
+			"",
+			"IEnumerator IEnumerable.GetEnumerator()",
+			"{",
+			"    return this.GetEnumerator();",
+			"}"
+		]
+	},
+	"Second test": {
+		"scope": "csharp",
+		"prefix": "t2",
+		"body": [
+			"[Fact]",
+			"public void It_should_return_the_same_number_of_cells()",
+			"{",
+			"    $0",
+			"}"
+		]
+	},
+	"Second test: Given": {
+		"scope": "csharp",
+		"prefix": "t2g",
+		"body": [
+			"// Arrange",
+			"var seed = new Generation(",
+			"                new List<Cell>()",
+			"                {",
+			"                    new Cell(x: 9, y: 12),",
+			"                    new Cell(x: 15, y: 20),",
+			"                    new Cell(x: 1, y: 2)",
+			"                });",
+			"var sut = new Grid();$0"
+		]
+	},
+	"Second test: When": {
+		"scope": "csharp",
+		"prefix": "t2w",
+		"body": [
+			"// Act",
+			"var nextGeneration = sut.Refresh(seed);$0"
+		]
+	},
+	"Second test: Then": {
+		"scope": "csharp",
+		"prefix": "t2t",
+		"body": [
+			"// Assert",
+			"nextGeneration.Should().HaveCount(3);$0"
+		]
+	},
+	"Third test": {
+		"scope": "csharp",
+		"prefix": "t3",
+		"body": [
+			"[Fact]",
+			"public void It_should_kill_an_alive_cell_without_neighbors()",
+			"{",
+			"    $0",
+			"}"
+		]
+	},
+	"Third test: Given": {
+		"scope": "csharp",
+		"prefix": "t3g",
+		"body": [
+			"// Arrange",
+	        "var solitaryCell = new Cell(x: 9, y: 10, alive: true);",
+	        "var seed = new Generation(",
+            "                new List<Cell>()",
+            "                {",
+            "                    solitaryCell",
+            "                });",
+			"var sut = new Grid();$0"
+		]
+	},
+	"Third test: When": {
+		"scope": "csharp",
+		"prefix": "t3w",
+		"body": [
+			"// Act",
+			"sut.Refresh(seed);$0"
+		]
+	},
+	"Third test: Then": {
+		"scope": "csharp",
+		"prefix": "t3t",
+		"body": [
+			"// Assert",
+			"solitaryCell.Alive.Should().BeFalse();$0"
+		]
+	},
+	"First and Second Test: AutoFixture Given": {
+		"scope": "csharp",
+		"prefix": "t1ag",
+		"body": [
+			"var fixture = new Fixture();",
+			"var seed = fixture.Create<Generation>();",
+			"var sut = fixture.Create<Grid>();$0"
+		]
+	},
+	"Third test: AutoFixture Given Part 1": {
+		"scope": "csharp",
+		"prefix": "t3ag1",
+		"body": [
+			"var fixture = new Fixture();",
+			"fixture.Customize<Cell>(create =>",
+			"    create.With(c => c.Alive, true));",
+	        "fixture.Customize(new SingleElementSequence<Cell>());$0"
+		]
+	},
+	"Third test: AutoFixture Given Part 2": {
+		"scope": "csharp",
+		"prefix": "t3ag2",
+		"body": [
+			"var seed = fixture.Create<Generation>();",
+			"var sut = fixture.Create<Grid>();$0"
+		]
+	}
+}
